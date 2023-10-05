@@ -23,8 +23,9 @@ public class PlayerController : MonoBehaviour
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
             rb.GetComponent<Rigidbody>();
             rb.AddForce(0,jumpForce, 0);
+            rb.angularVelocity = new Vector3(2,0,0);
         }
-        transform.Translate(0,0,speed); //Moving forward
+        transform.Translate(0,0,speed, Space.World); //Moving forward
     }
 
     bool IsTouchingGround()
