@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 0.04f; //Field
 
-    private float jumpForce = 200;
+    private float jumpForce = 250;
     
     // Start is called before the first frame update
     void Start()
@@ -18,12 +18,18 @@ public class PlayerController : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && IsTouchingGround())
         {
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
             rb.GetComponent<Rigidbody>();
             rb.AddForce(0,jumpForce, 0);
         }
         transform.Translate(0,0,speed); //Moving forward
+    }
+
+    bool IsTouchingGround()
+    {
+        int layerMask = LayerMask.GetMask("Ground");
+        return Physics.CheckBox(transform.position, transform.lossyScale / 1.99f, transform.rotation, layerMask);
     }
 }
