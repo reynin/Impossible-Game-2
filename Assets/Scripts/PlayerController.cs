@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0.04f; //Field
+
+    private float jumpForce = 200;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -12,15 +15,15 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
+   
     void Update()
     {
-        bool isKeyCurrentlyDown = Input.GetKeyDown(KeyCode.Escape);
-        if (...)
+        if (Input.GetButtonDown("Jump"))
         {
-            
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            rb.GetComponent<Rigidbody>();
+            rb.AddForce(0,jumpForce, 0);
         }
-
-        Rigidbody rb = GetComponent<Rigidbody>();
-        transform.Translate(0,0,speed);
+        transform.Translate(0,0,speed); //Moving forward
     }
 }
