@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsTouchingGround())
         {
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-            rb.GetComponent<Rigidbody>();
             rb.AddForce(0,jumpForce, 0);
             rb.angularVelocity = new Vector3(2,0,0);
         }
