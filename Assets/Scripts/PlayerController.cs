@@ -48,6 +48,5 @@ public class PlayerController : MonoBehaviour
         {
             JumpForce();
         }
-        transform.Translate(0,0,speed, Space.World); //Moving forward
     }
 }
