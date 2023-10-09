@@ -8,6 +8,10 @@ namespace DefaultNamespace
         private void LateUpdate()
         {
             GameObject player = GameObject.Find("Player");
+            if (player == null)
+            {
+                return;
+            }
             Vector3 target = player.transform.position + new Vector3(0, 0.61f, -5.452f);
             transform.position = target;
         }
