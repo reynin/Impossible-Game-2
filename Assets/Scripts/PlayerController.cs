@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0.04f; //Field
-    public float jumpForce = 200;
+    public float jumpForce = 5;
     public float jumpSpinForward = 2;
-    public float fallGravity = -1;
+    public float fallGravity = -5;
     public int targetFrameRate;
     
     private const float fallTolerance = -.1f;
@@ -32,9 +32,11 @@ public class PlayerController : MonoBehaviour
     // The Jump mechanic for player
     void JumpForce()
     {
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-        rb.AddForce(0, jumpForce, 0);
-        rb.angularVelocity = new Vector3(jumpSpinForward, 0, 0);
+        Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
+        Vector3 velocity = rigidBody.velocity;
+        velocity.y = jumpForce;
+        rigidBody.velocity = velocity;
+        rigidBody.angularVelocity = new Vector3(jumpSpinForward, 0, 0);
     }
 
     bool IsTouchingGround()
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && IsTouchingGround())
+        if (Input.GetButton("Jump") && IsTouchingGround())
         {
             JumpForce();
         }
