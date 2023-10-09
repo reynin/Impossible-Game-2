@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0.04f; //Field
-    public float jumpForce = 250;
+    public float jumpForce = 200;
     public float jumpSpinForward = 2;
     public float fallGravity = -1;
     public int targetFrameRate;
     
     private const float fallTolerance = -.1f;
 
-    void Start()
+    void Start() // To customize FPS
     {
         Application.targetFrameRate = targetFrameRate;
     }
@@ -20,12 +20,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Rigidbody rigidBody = gameObject.GetComponent<Rigidbody>();
+        Vector3 velocity = rigidBody.velocity;
         if (rigidBody.velocity.y < fallTolerance)
         {
             rigidBody.AddForce(0, fallGravity, 0);
         }
 
-        rigidBody.velocity = new Vector3(rigidBody.velocity.x, rigidBody.velocity.y, speed);
+        velocity.z = speed;
+        rigidBody.velocity = velocity;
     }
     // The Jump mechanic for player
     void JumpForce()
