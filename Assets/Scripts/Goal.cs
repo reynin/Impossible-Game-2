@@ -7,7 +7,7 @@ public class Goal : MonoBehaviour
 {
     IEnumerator OnCollisionEnter(Collision other)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
         SceneManager.LoadScene("WinScene");
     }
 }
